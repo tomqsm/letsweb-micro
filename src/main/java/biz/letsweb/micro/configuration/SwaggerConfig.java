@@ -1,5 +1,6 @@
 package biz.letsweb.micro.configuration;
 
+import biz.letsweb.micro.rest.controller.ProductController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -16,8 +17,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(
-                        RequestHandlerSelectors.basePackage(getClass().getPackage().getName() + ".controller")
+                .apis(RequestHandlerSelectors.basePackage(ProductController.class.getPackage().getName())
                 )
                 .paths(PathSelectors.any())
                 .build();

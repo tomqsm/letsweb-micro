@@ -1,4 +1,4 @@
-package biz.letsweb.micro.rest.model;
+package biz.letsweb.micro.model;
 
 import java.util.Objects;
 

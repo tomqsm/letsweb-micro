@@ -21,4 +21,5 @@ logging:
         org.springframework.web.servlet.mvc.method.annotation: info
         org.springframework.boot.context.embedded: info
         org.springframework.cloud: debug
+        org.springframework.test: warn
         com.vodafone: debug
