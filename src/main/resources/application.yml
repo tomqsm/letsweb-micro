@@ -14,6 +14,10 @@ spring:
  data:
   mongodb:
    uri: mongodb://mongodb-content-repository-development/contentdb
+micro:
+    controller:
+        products:
+            param1: param1value
 logging:
     level:
         ROOT: WARN
@@ -22,4 +26,4 @@ logging:
         org.springframework.boot.context.embedded: info
         org.springframework.cloud: debug
         org.springframework.test: warn
-        com.vodafone: debug
+        biz.letsweb.micro: debug

@@ -1,6 +1,6 @@
 package biz.letsweb.micro.rest.model;
 
-import biz.letsweb.micro.rest.controller.ProductController;
+import biz.letsweb.micro.rest.controller.ProductsController;
 import biz.letsweb.micro.rest.service.ProductService;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 public class ProductControllerTest {
 
     @InjectMocks
-    private ProductController productController;
+    private ProductsController productController;
 
     private MockMvc mockMvc;
 
@@ -66,11 +66,12 @@ public class ProductControllerTest {
      */
     @Test
     public void testGetId() throws Exception {
-        ProductService productService = new ProductService();
+        final ProductService productService = new ProductService();
         
         ReflectionTestUtils.setField(productController, "productService", productService);
+        ReflectionTestUtils.setField(productController, "param1", "some test value");
 
-        final MockHttpServletRequestBuilder get = get(ProductController.PATH)
+        final MockHttpServletRequestBuilder get = get(ProductsController.PATH)
                 .accept(MediaType.APPLICATION_JSON);
         
         final MvcResult restResult = this.mockMvc.perform(get)
