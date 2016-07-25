@@ -1,0 +1,24 @@
+server:
+ port: 8070
+ contextPath: /letsweb-micro
+info:
+ app:
+  name: @project.name@
+  description: Content repository application.
+  version: @project.version@
+  commit: @git.commit.id.abbrev@
+  branch: @git.branch@
+spring:
+ application:
+  name: ${server.contextPath}
+ data:
+  mongodb:
+   uri: mongodb://mongodb-content-repository-development/contentdb
+logging:
+    level:
+        ROOT: WARN
+        org.springframework.boot.actuate.endpoint.mvc: WARN
+        org.springframework.web.servlet.mvc.method.annotation: info
+        org.springframework.boot.context.embedded: info
+        org.springframework.cloud: debug
+        com.vodafone: debug
