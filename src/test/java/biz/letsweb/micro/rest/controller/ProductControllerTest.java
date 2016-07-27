@@ -1,6 +1,5 @@
-package biz.letsweb.micro.rest.model;
+package biz.letsweb.micro.rest.controller;
 
-import biz.letsweb.micro.rest.controller.ProductsController;
 import biz.letsweb.micro.rest.service.ProductService;
 import org.junit.After;
 import org.junit.AfterClass;
