@@ -12,7 +12,63 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    
+    <profiles>
+        <profile>
+            <id>devtools</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-devtools</artifactId>
+                    <optional>true</optional>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>ansible</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>co.escapeideas.maven</groupId>
+                        <artifactId>ansible-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>skipUnitTests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+        <profile>
+            <id>skipITs</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <skipITs>true</skipITs>
+            </properties>
+        </profile>
+        <profile>
+            <id>skipAllTests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <skipITs>true</skipITs>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -157,7 +213,7 @@
                     <version>1.2.0</version>
                     <configuration>
                         <promoteDebugAsInfo>true</promoteDebugAsInfo>
-                        <playbook>content-repository/maven-playbook.yml</playbook>
+                        <playbook>provision/tasks/main.yml</playbook>
                     </configuration>
                     <executions>
                         <execution>
