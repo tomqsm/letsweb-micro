@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @SpringApplicationConfiguration(classes = ProductsControllerITConfig.class)
-@EnableAutoConfiguration(exclude = {SwaggerConfig.class})
+@EnableAutoConfiguration(exclude = {SwaggerConfig.class, TuckeyUrlrewriteFilterConfig.class, TomcatConfig.class})
 @ComponentScan(basePackages = "biz.letsweb.micro.rest")
 public class ProductsControllerITConfig {
 
