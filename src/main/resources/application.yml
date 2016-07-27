@@ -11,9 +11,6 @@ info:
 spring:
  application:
   name: ${server.contextPath}
- data:
-  mongodb:
-   uri: mongodb://mongodb-content-repository-development/contentdb
 micro:
     controller:
         products:
