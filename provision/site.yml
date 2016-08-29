@@ -1,0 +1,9 @@
+## YAML Template. http://stackoverflow.com/questions/21870083/specify-sudo-password-for-ansible
+---
+- hosts: droplets
+#  gather_facts: true
+  remote_user: jozka
+  vars_files:
+      - ./roles/appservers/vars/credentials.yml
+  roles:
+    - appservers 
