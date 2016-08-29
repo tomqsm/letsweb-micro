@@ -1,0 +1,9 @@
+version: '2'
+services:
+  letsweb-micro:
+    image: tumcyk/letsweb-micro
+    ports:
+      - "8070:8070"
+    volumes:
+      - ~/.m2:/root/.m2:rw
+      
