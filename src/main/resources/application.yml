@@ -24,3 +24,7 @@ logging:
         org.springframework.cloud: debug
         org.springframework.test: warn
         biz.letsweb.micro: debug
+
+greeting: Hello World
+timer:
+ period: 2000

@@ -1,11 +1,9 @@
 package biz.letsweb.micro.configuration;
 
-import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.SocketUtils;
-import ch.qos.logback.access.tomcat.LogbackValve;
 import java.util.Collections;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
