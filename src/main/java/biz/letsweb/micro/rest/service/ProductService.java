@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class ProductService {
     public Product createExampleInstance(){
         return Product.builder()
-                .withId("123qwe")
+                .withId("123qweX")
                 .withName("example instance bicycle")
                 .withPrice(123)
                 .build();

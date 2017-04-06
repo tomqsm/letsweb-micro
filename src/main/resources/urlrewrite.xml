@@ -10,9 +10,9 @@
     </rule>
     
     <rule enabled="true" match-type="regex">
-        <note>/api/v1/hardware</note>
-        <from>^/api/v1/([a-z]+)$</from>
-        <to last="true">/$1</to>
+        <note>/products</note>
+        <from>^/products/([a-z]+)$</from>
+        <to last="true">/letsweb-micro/$1</to>
     </rule>
 
 </urlrewrite>

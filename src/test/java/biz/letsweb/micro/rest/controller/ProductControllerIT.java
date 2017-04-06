@@ -9,27 +9,27 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.boot.context.embedded.LocalServerPort;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Timed;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  *
  * @author tomasz
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ProductsControllerITConfig.class)
-@WebIntegrationTest({"server.port:0"})
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = ProductsControllerITConfig.class,
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductControllerIT {
 
     public static final Logger LOG = LoggerFactory.getLogger(ProductControllerIT.class);
 
-    @Value("${local.server.port}")
+    @LocalServerPort
     private int port;
 
     @Value("${server.contextPath}")
@@ -39,12 +39,13 @@ public class ProductControllerIT {
     private String infoAppName;
 
     private URL base;
-    private RestTemplate template;
+    
+    @Autowired
+    private TestRestTemplate template;
 
     @Before
     public void setUp() throws Exception {
         this.base = new URL("http://localhost:" + port + serverContextPath + ProductsController.PATH);
-        template = new TestRestTemplate();
     }
 
     @Test

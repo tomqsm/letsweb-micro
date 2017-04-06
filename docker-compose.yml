@@ -1,0 +1,14 @@
+version: '2'
+services:
+    letsweb-micro:
+        image: tumcyk/letsweb-micro
+        ports:
+            - "8070:8070"
+        volumes:
+            - ~/.m2:/root/.m2:rw
+        depends_on:
+            - h2-database
+    h2-database:
+        image: tumcyk/h2-database
+        ports:
+            - "9092:9092"

@@ -1,6 +1,7 @@
 package biz.letsweb.micro.rest.controller;
 
 import biz.letsweb.micro.rest.service.ProductService;
+import static org.hamcrest.CoreMatchers.equalTo;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -18,6 +19,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -29,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
  * @author tomasz
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = MockServletContext.class)
+@SpringBootTest(classes = MockServletContext.class)
 @WebAppConfiguration()
 public class ProductControllerTest {
 
@@ -70,12 +72,12 @@ public class ProductControllerTest {
         ReflectionTestUtils.setField(productController, "productService", productService);
         ReflectionTestUtils.setField(productController, "param1", "some test value");
 
-        final MockHttpServletRequestBuilder get = get(ProductsController.PATH)
+        final MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(ProductsController.PATH)
                 .accept(MediaType.APPLICATION_JSON);
         
         final MvcResult restResult = this.mockMvc.perform(get)
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andReturn();
     }

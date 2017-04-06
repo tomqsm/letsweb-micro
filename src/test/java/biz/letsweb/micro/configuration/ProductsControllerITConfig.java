@@ -5,7 +5,9 @@ import biz.letsweb.micro.rest.service.ProductService;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,8 +18,8 @@ import org.springframework.context.annotation.Configuration;
  * @author tomasz
  */
 @Configuration
-@SpringApplicationConfiguration(classes = ProductsControllerITConfig.class)
-@EnableAutoConfiguration(exclude = {SwaggerConfig.class, TuckeyUrlrewriteFilterConfig.class, TomcatConfig.class})
+@SpringBootTest(classes = ProductsControllerITConfig.class)
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @ComponentScan(basePackages = "biz.letsweb.micro.rest")
 public class ProductsControllerITConfig {
 
