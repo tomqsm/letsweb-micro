@@ -38,7 +38,7 @@ public class TuckeyUrlrewriteFilterConfig {
 
         Map<String, String> initParams = new HashMap<>(5);
         initParams.put("confReloadCheckInterval", "5");
-        initParams.put("logLevel", "warn");
+        initParams.put("logLevel", "debug");
         initParams.put("statusPath", "/status");
         initParams.put("confPath", "urlrewrite.xml");
 

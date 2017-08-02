@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,18 +28,19 @@ public class ProductsController {
 
     @Value("${micro.controller.products.param1:defaultValue}")
     private String param1;
+    @Value("${info.app.commit:00000}")
+    private String commit;
 
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(
-            method = RequestMethod.GET)
+    @GetMapping
     @ApiOperation(
             response = Product.class,
             notes = "Return a list of all products from database.",
             value = "Return a list of all products from database.")
     public Product getProduct() {
-        LOG.info("properties param1: {}",param1);
+        LOG.info("properties param1: {}, commit {}",param1, commit);
         final Product product = productService.createExampleInstance();
         return product;
     }

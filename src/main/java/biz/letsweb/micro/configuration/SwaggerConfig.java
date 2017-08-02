@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -32,7 +33,7 @@ public class SwaggerConfig {
                 "Exemple of basic Springboot configuration with basic API.",
                 "/api/v1",
                 "Terms of service",
-                "myeaddress@letsweb.biz",
+                new Contact("Tomasz", "http://letsweb.biz", "tomasz.kusmierczyk@letsweb.biz"),
                 "License of API",
                 "http://www.apache.org/licenses/LICENSE-2.0");
         return apiInfo;

@@ -1,12 +1,19 @@
 package biz.letsweb.micro.configuration;
 
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.SocketUtils;
+
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.tomcat.util.descriptor.web.ContextResource;
@@ -16,7 +23,6 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.jndi.JndiObjectFactoryBean;
 
 /**
- *
  * @author Tomasz
  */
 @Configuration
@@ -31,11 +37,10 @@ public class TomcatConfig {
 
     @Bean
     public TomcatEmbeddedServletContainerFactory tomcatFactory() {
-        final TomcatEmbeddedServletContainerFactory tomcatEmbeddedServletContainerFactory = new TomcatEmbeddedServletContainerFactory() {
+        final TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory() {
 
             @Override
-            protected TomcatEmbeddedServletContainer getTomcatEmbeddedServletContainer(
-                    Tomcat tomcat) {
+            protected TomcatEmbeddedServletContainer getTomcatEmbeddedServletContainer(Tomcat tomcat) {
                 tomcat.enableNaming();
                 return super.getTomcatEmbeddedServletContainer(tomcat);
             }
@@ -50,14 +55,17 @@ public class TomcatConfig {
 
                 context.getNamingResources().addResource(resource);
             }
+
         };
-        tomcatEmbeddedServletContainerFactory.setTomcatContextCustomizers(Collections.singletonList(context -> {
-            context.setSessionTimeout(30);
-        }));
-        tomcatEmbeddedServletContainerFactory.setTomcatConnectorCustomizers(
+        factory.setTomcatContextCustomizers(
+                Collections.singletonList(context -> {
+                    context.setSessionTimeout(30);
+                }));
+        factory.setTomcatConnectorCustomizers(
                 Collections.singletonList(context -> context.setProperty("Server", "zorro"))
         );
-        return tomcatEmbeddedServletContainerFactory;
+        factory.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/notfound.html"));
+        return factory;
     }
 
     @Bean(destroyMethod = "")

@@ -1,13 +1,18 @@
 package biz.letsweb.micro.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Objects;
 
 /**
  * Model Product POJO to be used as REST response of database entity.
  * @author tomasz
  */
+@ApiModel("Product Entry")
 public class Product {
 
+    @ApiModelProperty(value = "Id of the product", required = true, dataType = "String", readOnly = true)
     private String id;
     private String name;
     private int price;

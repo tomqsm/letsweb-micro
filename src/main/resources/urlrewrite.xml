@@ -4,15 +4,14 @@
 <urlrewrite use-context="false" decode-using="utf-8">
     
     <rule enabled="true" match-type="regex">
-        <note>Route to viewing Swagger documentation.</note>
+        <note>View Swagger documentation.</note>
         <from>^/docs$</from>
         <to type="redirect" last="true">http://%{server-name}:%{port}%{context-path}/swagger-ui.html</to>
     </rule>
-    
+
     <rule enabled="true" match-type="regex">
-        <note>/products</note>
-        <from>^/products/([a-z]+)$</from>
-        <to last="true">/letsweb-micro/$1</to>
+        <from>^/api/v1/products$</from>
+        <to last="true">/products</to>
     </rule>
 
 </urlrewrite>

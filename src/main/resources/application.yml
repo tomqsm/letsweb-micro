@@ -15,16 +15,18 @@ micro:
     controller:
         products:
             param1: param1value
-logging:
-    level:
-        ROOT: WARN
-        org.springframework.boot.actuate.endpoint.mvc: WARN
-        org.springframework.web.servlet.mvc.method.annotation: info
-        org.springframework.boot.context.embedded: info
-        org.springframework.cloud: debug
-        org.springframework.test: warn
-        biz.letsweb.micro: debug
+#logging:
+#    level:
+#        ROOT: DEBUG
+#        org.springframework.boot.actuate.endpoint.mvc: WARN
+#        org.springframework.web.servlet.mvc.method.annotation: info
+#        org.springframework.boot.context.embedded: info
+#        org.springframework.cloud: debug
+#        org.springframework.test: warn
+#        biz.letsweb.micro: debug
 
 greeting: Hello World
 timer:
- period: 2000
+ period: 15000
+application:
+ message: Hello message
